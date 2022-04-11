@@ -1,0 +1,9 @@
+.team {
+	height: 25vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 5em;
+	background-color: #919191;
+  }

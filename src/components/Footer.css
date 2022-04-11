@@ -1,0 +1,14 @@
+.footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 45em;
+	margin-top: 7.5em;
+	background-color: #ffcb05;
+	border: 1px solid;
+	border-radius: 20px 20px 0px 0px;
+	width: 30em;
+	height: 2em;
+  }
+
+  /*PLACERA FOOTER... margin-left/top...*/
