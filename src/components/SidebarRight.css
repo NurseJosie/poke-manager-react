@@ -5,3 +5,16 @@
 
 .sidebar-right {
   }
+
+  .pikachu-img {
+	animation: App-logo-spin infinite 15s linear;
+  }
+
+  @keyframes App-logo-spin {
+	from {
+	  transform: rotateY(0deg);
+	}
+	to {
+	  transform: rotateY(360deg);
+	}
+  }

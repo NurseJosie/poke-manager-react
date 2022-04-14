@@ -38,12 +38,16 @@ const Pokedex = () => {
           pokemon.map((pokemon) => (
             <ul key={pokemon.name}>
               <li>{pokemon.name}</li>
+              {/* , pokemon.front_default */}
             </ul>
           ))
         ) : (
           <span>Your pokemon are getting catched!</span>
         )}
       </div>
+      <button className="back-button" onClick={getData}>
+        Back
+      </button>
       <button className="next-button" onClick={getData}>
         Next
       </button>
