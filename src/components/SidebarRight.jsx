@@ -30,7 +30,6 @@ const SidebarRight = () => {
   return (
     <section className="sidebar-container">
       <aside className="sidebar-right">
-        <h4>Right Sidebar</h4>
         <h4>Random Pokémon Fact</h4>
         <p>{fact}</p>
         <img src="./src/assets/025.png" className="pikachu-img" />

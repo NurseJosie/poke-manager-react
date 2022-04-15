@@ -1,13 +1,23 @@
 .sidebar-container {
 	background-color: #919191;
 	margin: 2em;
+	
+	
 }
 
 .sidebar-right {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin: 2em;
   }
 
   .pikachu-img {
+	height: auto;
+	width: 10em;
 	animation: App-logo-spin infinite 15s linear;
+	margin-top: 3em;
   }
 
   @keyframes App-logo-spin {
