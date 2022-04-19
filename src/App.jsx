@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import SidebarRight from './components/SidebarRight';
 import Navbar from './components/Navbar';
+import { TeamProvider, TeamContext } from './contexts/TeamContext';
 
 function App() {
   return (
@@ -18,11 +19,13 @@ function App() {
         <Navbar />
 
         <main>
-          <Routes>
-            <Route path="/Home" element={<Home />} />
-            <Route path="/Pokedex" element={<Pokedex />} />
-            <Route path="/Team" element={<Team />} />
-          </Routes>
+          <TeamProvider value={TeamContext}>
+            <Routes>
+              <Route path="/Home" element={<Home />} />
+              <Route path="/Pokedex" element={<Pokedex />} />
+              <Route path="/Team" element={<Team />} />
+            </Routes>
+          </TeamProvider>
 
           <SidebarRight />
         </main>

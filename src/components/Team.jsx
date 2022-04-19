@@ -1,15 +1,31 @@
-import { useState, useEffect } from 'react';
-import './Team.css';
-import Pokedex from './Pokedex';
+import { useState, useEffect, useContext } from 'react';
+import '../styles/Team.css';
+import { TeamContext } from '../contexts/TeamContext';
 
 const Team = () => {
+  const [pokemon, setPokemon] = useContext(TeamContext)[pokemonState];
+  const [teamMembers, setTeamMembers] = useContext(TeamContext)[teamState];
+
+  const value = useContext(TeamContext);
+
   return (
     <section className="team">
       <h3>TEAM</h3>
       <div>
-        <ul>
-          <li>Members of team</li>
-        </ul>
+        <h3></h3>
+        {/* <ul>
+          <li>
+            Members of team
+            <p>ID:</p>
+            <p>{'#' + pokemon.id}</p>
+            <p>Nickname:</p>
+            <p>{nickname}</p>
+            <p>Name:</p>
+            <p>{pokemon.Name}</p>
+            <p>Abilities:</p>
+            <p>{pokemon.Abilities}</p>
+          </li>
+        </ul> */}
       </div>
     </section>
   );
@@ -23,26 +39,5 @@ const Team = () => {
 // 		<div> {contactInfo} </div>
 // 	</li>
 // )
-
-// {isFetching === false ? (
-//   pokemon.map((pokemon) => (
-//     <ul key={pokemon.id}>
-//       <li>
-//         <p>{'#' + pokemon.id}</p>
-//         <p>{' ' + pokemon.name}</p>
-//         <img src={pokemon.sprites.front_default} />
-//         {pokemon.abilities.map((ability) => (
-//           <ul>
-//             <li>{'Abilities: ' + ability.ability.name}</li>
-//           </ul>
-//         ))}
-//         <button>Add to TEAM</button>
-//       </li>
-//     </ul>
-//   ))
-// ) : (
-//   <span>Fetching Pokemon...</span>
-// )}
-// </div>
 
 export default Team;

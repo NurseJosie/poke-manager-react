@@ -1,18 +1,20 @@
-import { useState, useEffect } from 'react';
-import './Pokedex.css';
-import Team from './Team';
+import { useState, useEffect, useContext } from 'react';
+import '../styles/Pokedex.css';
+import { TeamContext } from '../contexts/TeamContext';
 
 const Pokedex = () => {
   //---------------------------------------------------------------------------------------
   //tillhör pokemon-fetch
-  const [pokemon, setPokemon] = useState([]);
+  const { pokemonState, teamState } = useContext(TeamContext);
   const [isFetching, setIsFetching] = useState(false);
   const [pokemonNum, setPokemonNum] = useState(0);
+  const [pokemon, setPokemon] = pokemonState;
 
   // till fetch
   //https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0
   const getData = async () => {
     try {
+      console.log(pokemon);
       setIsFetching(true);
       const url = `https://pokeapi.co/api/v2/pokemon?limit=40&offset=${pokemonNum}`;
       console.log('About to send request: ', url);
@@ -26,7 +28,13 @@ const Pokedex = () => {
         await fetch(data.results[i].url).then(async (response) => {
           console.log(response);
           const pokeJson = await response.json();
-          pokemonTemp.push(pokeJson);
+          const newPokemon = {
+            id: pokeJson.id,
+            Name: pokeJson.name,
+            Image: pokeJson.sprites.front_default,
+            Abilities: pokeJson.abilities,
+          };
+          pokemonTemp.push(newPokemon);
         });
       }
       console.log(pokemonTemp);
@@ -56,7 +64,7 @@ const Pokedex = () => {
   // till search
   useEffect(() => {
     const results = pokemon.filter((p) =>
-      p.name.toLowerCase().includes(search)
+      p.Name.toLowerCase().includes(search)
     );
 
     setPokemon(results);
@@ -64,7 +72,7 @@ const Pokedex = () => {
 
   //---------------------------------------------------------------------------------------
   // till team
-  const [teamMembers, setTeamMembers] = useState([]);
+  const [teamMembers, setTeamMembers] = teamState;
 
   const addPokemon = async (newTeamMember) => {
     await setTeamMembers([...teamMembers, newTeamMember]);
@@ -118,9 +126,9 @@ const Pokedex = () => {
             <ul key={pokemon.id}>
               <li>
                 <p>{'#' + pokemon.id}</p>
-                <p>{pokemon.name.toUpperCase()}</p>
-                <img src={pokemon.sprites.front_default} />
-                {pokemon.abilities.map((ability) => (
+                <p>{pokemon.Name}</p>
+                <img src={pokemon.Image} />
+                {pokemon.Abilities.map((ability) => (
                   <ul>
                     <li>{'Abilities: ' + ability.ability.name}</li>
                   </ul>

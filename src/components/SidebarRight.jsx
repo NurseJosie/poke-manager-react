@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './SidebarRight.css';
+import '../styles/SidebarRight.css';
 
 const SidebarRight = () => {
   let facts = [
