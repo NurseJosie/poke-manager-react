@@ -8,9 +8,12 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import SidebarRight from './components/SidebarRight';
 import Navbar from './components/Navbar';
-import { TeamProvider, TeamContext } from './contexts/TeamContext';
+// import { TeamProvider, TeamContext } from './contexts/TeamContext';
 
 function App() {
+  // const [pokemon, setPokemon] = useState([]);
+  const [teamMembers, setTeamMembers] = useState([]);
+
   return (
     <Router>
       <div className="App">
@@ -19,13 +22,13 @@ function App() {
         <Navbar />
 
         <main>
-          <TeamProvider value={TeamContext}>
-            <Routes>
-              <Route path="/Home" element={<Home />} />
-              <Route path="/Pokedex" element={<Pokedex />} />
-              <Route path="/Team" element={<Team />} />
-            </Routes>
-          </TeamProvider>
+          {/* <TeamProvider value={TeamContext}> */}
+          <Routes>
+            <Route path="/Home" element={<Home />} />
+            <Route path="/Pokedex" element={<Pokedex />} value={teamMembers} />
+            <Route path="/Team" element={<Team />} value={teamMembers} />
+          </Routes>
+          {/* </TeamProvider> */}
 
           <SidebarRight />
         </main>

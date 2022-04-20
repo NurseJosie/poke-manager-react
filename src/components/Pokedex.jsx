@@ -1,32 +1,36 @@
 import { useState, useEffect, useContext } from 'react';
 import '../styles/Pokedex.css';
-import { TeamContext } from '../contexts/TeamContext';
+// import { TeamContext } from '../contexts/TeamContext';
 
-const Pokedex = () => {
+const Pokedex = (props) => {
   //---------------------------------------------------------------------------------------
   //tillhör pokemon-fetch
-  const { pokemonState, teamState } = useContext(TeamContext);
+
+  // const { pokemonState, teamState } = useContext(TeamContext);
   const [isFetching, setIsFetching] = useState(false);
   const [pokemonNum, setPokemonNum] = useState(0);
-  const [pokemon, setPokemon] = pokemonState;
+  const [pokemon, setPokemon] = useState([]);
+  //const [pokemon, setPokemon] = pokemonState;
 
   // till fetch
-  //https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0
+
   const getData = async () => {
     try {
-      console.log(pokemon);
+      //console.log(pokemon);
       setIsFetching(true);
       const url = `https://pokeapi.co/api/v2/pokemon?limit=40&offset=${pokemonNum}`;
-      console.log('About to send request: ', url);
+      // console.log('About to send request: ', url);
       const response = await fetch(url);
       const data = await response.json();
 
-      console.log('Response from API: ', data);
+      //console.log('Response from API: ', data);
       //setPokemon(data.results);
+
       let pokemonTemp = [];
+
       for (let i = 0; i < data.results.length; i++) {
         await fetch(data.results[i].url).then(async (response) => {
-          console.log(response);
+          //console.log(response);
           const pokeJson = await response.json();
           const newPokemon = {
             id: pokeJson.id,
@@ -72,11 +76,12 @@ const Pokedex = () => {
 
   //---------------------------------------------------------------------------------------
   // till team
-  const [teamMembers, setTeamMembers] = teamState;
+  //const [teamMembers, setTeamMembers] = useState([]);
+  // const [teamMembers, setTeamMembers] = teamState;
 
   const addPokemon = async (newTeamMember) => {
-    await setTeamMembers([...teamMembers, newTeamMember]);
-    console.log(teamMembers);
+    await setTeamMembers([...props.teamMembers, newTeamMember]);
+    console.log(props.teamMembers);
   };
 
   const getNickname = () => {
@@ -129,7 +134,7 @@ const Pokedex = () => {
                 <p>{pokemon.Name}</p>
                 <img src={pokemon.Image} />
                 {pokemon.Abilities.map((ability) => (
-                  <ul>
+                  <ul key={ability.ability.name}>
                     <li>{'Abilities: ' + ability.ability.name}</li>
                   </ul>
                 ))}
