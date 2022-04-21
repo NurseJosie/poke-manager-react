@@ -14,6 +14,36 @@ function App() {
   // const [pokemon, setPokemon] = useState([]);
   const [teamMembers, setTeamMembers] = useState([]);
 
+  // set the team members.........
+  //   const SetTeamMembers = () => {
+  // const addPokemon = "";
+  // const getNickname = "";
+  // const handleClick = "";
+  //     return (
+  //      addPokemon = async (newTeamMember) => {
+  //         await setTeamMembers([
+  //           ...teamMembers,
+  //           newTeamMember,
+  //         ]);
+  //         console.log(teamMembers);
+  //       }
+
+  //       getNickname = () => {
+  //         return window.prompt('Please input a nickname!');
+  //       };
+
+  //       // till team
+  //        handleClick = async (id) => {
+  //         const nickname = getNickname();
+  //         let newTeamMember = {
+  //           Nickname: nickname,
+  //           Pokémon: pokemon.filter((p) => p.id === id)[0],
+  //         };
+  //         await addPokemon(newTeamMember);
+  //       };
+  //     )
+  //   }
+
   return (
     <Router>
       <div className="App">
@@ -25,8 +55,18 @@ function App() {
           {/* <TeamProvider value={TeamContext}> */}
           <Routes>
             <Route path="/Home" element={<Home />} />
-            <Route path="/Pokedex" element={<Pokedex />} value={teamMembers} />
-            <Route path="/Team" element={<Team />} value={teamMembers} />
+            <Route
+              path="/Pokedex"
+              element={<Pokedex />}
+              teamMembers={teamMembers}
+              setTeamMembers={setTeamMembers}
+            />
+            <Route
+              path="/Team"
+              element={<Team />}
+              teamMembers={teamMembers}
+              setTeamMembers={setTeamMembers}
+            />
           </Routes>
           {/* </TeamProvider> */}
 

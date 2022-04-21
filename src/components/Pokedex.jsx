@@ -1,18 +1,14 @@
 import { useState, useEffect, useContext } from 'react';
 import '../styles/Pokedex.css';
 // import { TeamContext } from '../contexts/TeamContext';
+import Team from '../components/Team';
 
-const Pokedex = (props) => {
+const Pokedex = ({ teamMembers, setTeamMembers }) => {
   //---------------------------------------------------------------------------------------
   //tillhör pokemon-fetch
-
-  // const { pokemonState, teamState } = useContext(TeamContext);
   const [isFetching, setIsFetching] = useState(false);
   const [pokemonNum, setPokemonNum] = useState(0);
   const [pokemon, setPokemon] = useState([]);
-  //const [pokemon, setPokemon] = pokemonState;
-
-  // till fetch
 
   const getData = async () => {
     try {
@@ -50,7 +46,6 @@ const Pokedex = (props) => {
     }
   };
 
-  // till fetch
   useEffect(() => {
     getData();
   }, [pokemonNum]);
@@ -58,14 +53,12 @@ const Pokedex = (props) => {
   //---------------------------------------------------------------------------------------
   //till searchbar
   const [search, setSearch] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const searchResults = [];
 
-  //till search
   const handleSearch = (s) => {
     setSearch(s.target.value);
   };
 
-  // till search
   useEffect(() => {
     const results = pokemon.filter((p) =>
       p.Name.toLowerCase().includes(search)
@@ -76,12 +69,9 @@ const Pokedex = (props) => {
 
   //---------------------------------------------------------------------------------------
   // till team
-  //const [teamMembers, setTeamMembers] = useState([]);
-  // const [teamMembers, setTeamMembers] = teamState;
-
-  const addPokemon = async (newTeamMember) => {
-    await setTeamMembers([...props.teamMembers, newTeamMember]);
-    console.log(props.teamMembers);
+  const addPokemon = (newTeamMember) => {
+    setTeamMembers.setTeamMembers([...teamMembers.teamMembers, newTeamMember]);
+    console.log(teamMembers.teamMembers);
   };
 
   const getNickname = () => {

@@ -1,17 +1,18 @@
 import { useState, useEffect, useContext } from 'react';
 import '../styles/Team.css';
+import Pokedex from '../components/Pokedex';
 
 //if det finns minst 3 pokemon i ett lag, prompt "ditt team är inte redo"
 //map props.teamMembers i <li> för att skriva ut laget
 // teamMember.pokemon.Name/id/Image... osv...
 //
-const Team = (props) => {
+const Team = ({ teamMembers }) => {
   return (
     <section className="team">
       <h3>TEAM</h3>
       <div>
-        {props.teamMembers > 2 ? (
-          props.teamMembers.map((teamMember) => (
+        {teamMembers >= 3 ? (
+          teamMembers.teamMembers.map((teamMember) => (
             <ul key={teamMember.pokemon.id}>
               <li>
                 <p>{'#' + teamMember.pokemon.id}</p>
