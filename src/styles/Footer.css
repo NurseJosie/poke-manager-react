@@ -1,12 +1,17 @@
 .footer {
-    position: fixed;
-	left: 0;
+    /* position: fixed; */
+	/* left: 0;
+	bottom: 0; */
+
+	position: absolute;
 	bottom: 0;
-	width: 100%;
+
+	width: 80%;
 	background-color: #ffcb05;
 	text-align: center;
 	border: 1px solid #ffcb05;;
 	border-radius: 20px 20px 0px 0px;
+	
   }
 
  /*minska höjden. ändra typsnitt, färg och text*/

@@ -2,8 +2,11 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 8vh;
-	background-color: #ffcb05;
+	height: 10vh;
+	background-image: url(../assets/header.jpg);
+	font-size: 3em;
+
+	color: #ffcb05;
   }
 
   

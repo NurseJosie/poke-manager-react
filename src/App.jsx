@@ -45,7 +45,7 @@ function App() {
           <SidebarRight />
         </main>
 
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );
