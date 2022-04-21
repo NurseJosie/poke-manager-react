@@ -1,7 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/Pokedex.css';
-// import { TeamContext } from '../contexts/TeamContext';
-import Team from '../components/Team';
 
 const Pokedex = ({ teamMembers, setTeamMembers }) => {
   //---------------------------------------------------------------------------------------
@@ -60,32 +58,39 @@ const Pokedex = ({ teamMembers, setTeamMembers }) => {
   };
 
   useEffect(() => {
-    const results = pokemon.filter((p) =>
-      p.Name.toLowerCase().includes(search)
-    );
-
-    setPokemon(results);
+    if (search.length) {
+      const results = pokemon.filter((p) =>
+        p.Name.toLowerCase().includes(search)
+      );
+      setPokemon(results);
+    } else {
+      getData();
+    }
   }, [search]);
 
   //---------------------------------------------------------------------------------------
   // till team
-  const addPokemon = (newTeamMember) => {
-    setTeamMembers.setTeamMembers([...teamMembers.teamMembers, newTeamMember]);
-    console.log(teamMembers.teamMembers);
-  };
+  // const addPokemon = (newTeamMember) => {
+  //   setTeamMembers((prevTeam) => [...prevTeam, newTeamMember]);
+  //   //console.log(teamMembers.teamMembers);
+  // };
+
+  useEffect(() => {}, [teamMembers, setTeamMembers]);
 
   const getNickname = () => {
     return window.prompt('Please input a nickname!');
   };
 
   // till team
-  const handleClick = async (id) => {
+  const handleClick = (id) => {
     const nickname = getNickname();
     let newTeamMember = {
       Nickname: nickname,
-      Pokémon: pokemon.filter((p) => p.id === id)[0],
+      Pokemon: pokemon.filter((p) => p.id === id)[0],
     };
-    await addPokemon(newTeamMember);
+
+    setTeamMembers((prevTeam) => [...prevTeam, newTeamMember]);
+    console.log(newTeamMember, teamMembers);
   };
 
   //-----------------------------------------------------------------------------
