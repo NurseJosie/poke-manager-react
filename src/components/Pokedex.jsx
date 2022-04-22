@@ -2,29 +2,21 @@ import { useState, useEffect } from 'react';
 import '../styles/Pokedex.css';
 
 const Pokedex = ({ teamMembers, setTeamMembers }) => {
-  //---------------------------------------------------------------------------------------
-  //tillhör pokemon-fetch
+  // FETCHING ---------------------------------------------------------------------------------------
   const [isFetching, setIsFetching] = useState(false);
   const [pokemonNum, setPokemonNum] = useState(0);
   const [pokemon, setPokemon] = useState([]);
 
   const getData = async () => {
     try {
-      //console.log(pokemon);
       setIsFetching(true);
       const url = `https://pokeapi.co/api/v2/pokemon?limit=40&offset=${pokemonNum}`;
-      // console.log('About to send request: ', url);
       const response = await fetch(url);
       const data = await response.json();
 
-      //console.log('Response from API: ', data);
-      //setPokemon(data.results);
-
       let pokemonTemp = [];
-
       for (let i = 0; i < data.results.length; i++) {
         await fetch(data.results[i].url).then(async (response) => {
-          //console.log(response);
           const pokeJson = await response.json();
           const newPokemon = {
             id: pokeJson.id,
@@ -35,9 +27,7 @@ const Pokedex = ({ teamMembers, setTeamMembers }) => {
           pokemonTemp.push(newPokemon);
         });
       }
-      console.log(pokemonTemp);
       setPokemon(pokemonTemp);
-      console.log(pokemon);
       setIsFetching(false);
     } catch {
       console.log('error');
@@ -48,8 +38,7 @@ const Pokedex = ({ teamMembers, setTeamMembers }) => {
     getData();
   }, [pokemonNum]);
 
-  //---------------------------------------------------------------------------------------
-  //till searchbar
+  // SEARCHBAR ---------------------------------------------------------------------------------------
   const [search, setSearch] = useState('');
   const searchResults = [];
 
@@ -68,20 +57,13 @@ const Pokedex = ({ teamMembers, setTeamMembers }) => {
     }
   }, [search]);
 
-  //---------------------------------------------------------------------------------------
-  // till team
-  // const addPokemon = (newTeamMember) => {
-  //   setTeamMembers((prevTeam) => [...prevTeam, newTeamMember]);
-  //   //console.log(teamMembers.teamMembers);
-  // };
-
+  // TEAM ---------------------------------------------------------------------------------------
   useEffect(() => {}, [teamMembers, setTeamMembers]);
 
   const getNickname = () => {
     return window.prompt('Please input a nickname!');
   };
 
-  // till team
   const handleClick = (id) => {
     const nickname = getNickname();
     let newTeamMember = {
@@ -93,19 +75,18 @@ const Pokedex = ({ teamMembers, setTeamMembers }) => {
     console.log(newTeamMember, teamMembers);
   };
 
-  //-----------------------------------------------------------------------------
-  //knappar
+  // BUTTONS -----------------------------------------------------------------------------
   const BackInList = () => {
     return setPokemonNum(pokemonNum - 40);
   };
   const NextInList = () => {
     return setPokemonNum(pokemonNum + 40);
   };
+
   //-----------------------------------------------------------------------------
   return (
-    <section className="pokedex-container">
-      <h3>POKÉDEX</h3>
-
+    <section className="container">
+      <h2>POKÉDEX</h2>
       <div className="search-bar">
         <input
           type="text"
@@ -119,15 +100,14 @@ const Pokedex = ({ teamMembers, setTeamMembers }) => {
           ))}
         </ul>
       </div>
-
       <div className="result-box">
-        {isFetching === false ? (
-          pokemon.map((pokemon) => (
-            <ul key={pokemon.id}>
-              <li>
+        <ul>
+          {isFetching === false ? (
+            pokemon.map((pokemon) => (
+              <li key={pokemon.id}>
                 <p>{'#' + pokemon.id}</p>
                 <p>{pokemon.Name}</p>
-                <img src={pokemon.Image} />
+                <img src={pokemon.Image} className="poke-img" />
                 {pokemon.Abilities.map((ability) => (
                   <ul key={ability.ability.name}>
                     <li>{'Abilities: ' + ability.ability.name}</li>
@@ -137,11 +117,11 @@ const Pokedex = ({ teamMembers, setTeamMembers }) => {
                   Add to TEAM
                 </button>
               </li>
-            </ul>
-          ))
-        ) : (
-          <span>Fetching Pokemon...</span>
-        )}
+            ))
+          ) : (
+            <p>Fetching Pokemon...</p>
+          )}
+        </ul>
       </div>
       <div className="buttons">
         <button className="back-button" onClick={BackInList}>

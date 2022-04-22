@@ -1,9 +1,11 @@
 .sidebar-container {
-	background-color: #a7a3a3;
+	background-color: #d1d0d0;
 	margin: 2em;
 	border-radius: 10px;
     position: sticky; 
     top: 0;
+	height: 50vh;
+	transform: translateY(10vh);
 }
 
 .sidebar-right {

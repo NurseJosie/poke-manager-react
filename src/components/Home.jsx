@@ -2,16 +2,20 @@ import '../styles/Home.css';
 
 const Home = () => {
   return (
-    <section className="home-container">
-      <h3>HOME</h3>
+    <section className="container">
+      <h2>HOME</h2>
       <section className="sources">
-        <h4>Källor:</h4>
+        <h3>
+          Use this Poké Mangager by adding Pokémon from the Pokédex to your
+          Team!
+        </h3>
+        <h4>SOURCES:</h4>
         <ul>
           <li>
             <a href="http://pokeapi.co/">PokeAPI</a>
           </li>
           <li>
-            <a href="https://www.pokemon.com/se/">Pokemon.com</a>
+            <a href="https://www.pokemon.com/se/">Pokemon Official Website</a>
           </li>
           <li>
             <a href="https://www.beano.com/posts/pokemon-facts">

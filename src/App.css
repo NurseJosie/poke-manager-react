@@ -1,15 +1,18 @@
 .App {
-  background-color: #c2bcbc;
-  height: 100%;
-  background-position: center;
-  background-size: cover;
+  background-color: #e9e8e8;
+  min-height: 100vh;
   font-family: Comfortaa;
 }
 
 main {
   display: grid;  
   grid-template-columns: 5fr 1fr;
+  text-align: center;
 }
+
+  h2 {
+   font-size: 2em;
+  }
 
 
 

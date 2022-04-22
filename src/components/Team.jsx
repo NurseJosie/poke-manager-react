@@ -1,27 +1,31 @@
-import { useState, useEffect } from 'react';
 import '../styles/Team.css';
 
-//if det finns minst 3 pokemon i ett lag, prompt "ditt team är inte redo"
-//map props.teamMembers i <li> för att skriva ut laget
-// teamMember.pokemon.Name/id/Image... osv...
-//
 const Team = ({ teamMembers, setTeamMembers }) => {
-  const handleDelete = (id) => {
-    const team = teamMembers.filter((member) => member.Pokemon.id !== id);
+  // DELETE --------------------------------------------------------------------------------
+  const handleDelete = (index) => {
+    console.log(index, teamMembers);
+    const team = [
+      ...teamMembers.slice(0, index),
+      ...teamMembers.slice(index + 1),
+    ];
+    console.log(team);
     setTeamMembers(team);
   };
+  //https:stackoverflow.com/questions/41420333/why-splice-not-working-correctly-in-react
 
+  //-------------------------------------------------------------------------------------------
   return (
-    <section className="team">
-      <h3>TEAM</h3>
-      <div>
+    <section className="container">
+      <h2>TEAM</h2>
+      <div className="team-display">
         <ul>
           {teamMembers.length >= 3 ? (
-            teamMembers.map((teamMember) => (
+            teamMembers.map((teamMember, index) => (
               <li key={teamMember.Pokemon.id}>
                 <p>{'#' + teamMember.Pokemon.id}</p>
+                <p>{teamMember.Nickname}</p>
                 <p>{teamMember.Pokemon.Name}</p>
-                <img src={teamMember.Pokemon.Image} />
+                <img className="poke-img" src={teamMember.Pokemon.Image} />
                 <ul>
                   {teamMember.Pokemon.Abilities.map((ability) => (
                     <li key={ability.ability.name}>
@@ -29,16 +33,20 @@ const Team = ({ teamMembers, setTeamMembers }) => {
                     </li>
                   ))}
                 </ul>
-                <button onClick={() => handleDelete(teamMember?.Pokemon.id)}>
+                <button
+                  className="remove-btn"
+                  onClick={() => handleDelete(index)}
+                >
                   Remove from Team
                 </button>
               </li>
             ))
           ) : (
-            <span>
-              Please add at least three Pokémon to your team! Current Team
-              Members: {teamMembers.length}
-            </span>
+            <div className="warning">
+              <p>Please add at least three Pokémon to your team!</p>
+              <p> Current Team Members: {teamMembers.length}</p>
+              <img src="./src/assets/025.png" className="pikachu-img" />
+            </div>
           )}
         </ul>
       </div>

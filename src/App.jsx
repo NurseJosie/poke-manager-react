@@ -5,7 +5,6 @@ import Team from './components/Team';
 import Pokedex from './components/Pokedex';
 import Home from './components/Home';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import SidebarRight from './components/SidebarRight';
 import Navbar from './components/Navbar';
 
@@ -16,9 +15,7 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-
         <Navbar />
-
         <main>
           <Routes>
             <Route path="/Home" element={<Home />} />
@@ -44,8 +41,6 @@ function App() {
 
           <SidebarRight />
         </main>
-
-        {/* <Footer /> */}
       </div>
     </Router>
   );

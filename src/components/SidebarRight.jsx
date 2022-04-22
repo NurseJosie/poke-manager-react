@@ -6,7 +6,7 @@ const SidebarRight = () => {
     'Saudi Arabia banned Pokémon at one point.',
     'Pikachu directly translates as Sparkly mouse noise.',
     'Lots of Pokémon names are puns.',
-    'Pokémon was created by a video game designer called Satoshi Tajiri in 1995',
+    'Pokémon was created by a video game designer called Satoshi Tajiri in 1995.',
     'There was originally a Pokémon based on Dolly the Sheep, but it was scrapped.',
     'Over 30 billion Pokémon cards have been sold.',
     'Only Mario has sold more video games than Pokémon.',
@@ -19,9 +19,9 @@ const SidebarRight = () => {
     'Over 88 billion Pokémon have been caught on Pokémon Go.',
     'The smallest Pokémon is the Flabébé.',
     'In Detective Pikachu, Ryme city is based on London.',
-    'Pokémon Red & Blue only reached Europe three years after it was made',
+    'Pokémon Red & Blue only reached Europe three years after it was made.',
     'Some of the rarest Pokémon cards are worth over $100,000!',
-    'Mewtwo was meant to be the most powerful Pokémon ever',
+    'Mewtwo was meant to be the most powerful Pokémon ever.',
     'Currently, there have been 23 animated Pokémon films released.',
   ];
   let fact = facts[Math.floor(Math.random() * facts.length)];

@@ -3,10 +3,11 @@ header {
 	align-items: center;
 	justify-content: center;
 	height: 10vh;
-	background-image: url(../assets/header.jpg);
 	font-size: 3em;
-
+	background-color: rgb(39, 38, 38);
 	color: #ffcb05;
+	border-radius: 0px 0px 90px 0px;
+	max-width: 50%;
   }
 
   

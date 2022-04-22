@@ -1,16 +1,16 @@
-  .home-container {
-	background-color: #919191;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	margin-left: 20em;
-	height: 55vh;
-
+  .sources > h3 {
+    margin: 2em;
   }
 
-  .sources {
-	  
+  .sources > ul > li {
+     display: inline-block;
+     border: none;
+     padding: 1em;
+     margin: 2em;
+     }
+
+  .sources > ul > li > a {
+ font-size: 1.5em;
   }
 
  
